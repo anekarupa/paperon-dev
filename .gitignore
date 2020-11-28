@@ -12,6 +12,7 @@
 /build
 
 # misc
+.firebase
 firebase.json
 .firebaserc
 .eslintcache
