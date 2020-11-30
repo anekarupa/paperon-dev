@@ -135,47 +135,50 @@ export default function Header(props) {
     setOpenMenu(false)
   }
 
+  const menuOptions = [
+    { name: "Layanan", link: "/layanan" },
+    { name: "Kuesioner", link: "/kuesioner" },
+    { name: "Monitoring", link: "/monitoring" },
+  ]
+
+  const routes = [
+    { name: "Beranda", link: "/" },
+    { name: "Layanan", link: "/layanan", ariaOwns: anchorEl ? "simple-menu" : undefined, ariaPopup: anchorEl ? "true" : undefined, mouseOver: event => handleOpen(event) },
+    { name: "Tentang", link: "/tentang" },
+    { name: "Kontak", link: "/kontak" },
+  ]
+
   const tabs = (
     <React.Fragment>
       <Tabs className={classes.tabContainer} indicatorColor="primary">
-        <Tab className={classes.tab} component={Link} to="/" label="Beranda" />
-        <Tab className={classes.tab} component={Link} to="/layanan" label="Layanan" aria-owns={anchorEl ? "simple-menu" : undefined} aria-haspopup={anchorEl ? "true" : undefined} onMouseOver={event => handleOpen(event)} />
-        <Tab className={classes.tab} component={Link} to="/tentang" label="Tentang" />
-        <Tab className={classes.tab} component={Link} to="/kontak" label="Kontak" />
+        {routes.map((route, i) => (
+          <Tab className={classes.tab} component={Link} to={route.link} label={route.name} aria-owns={route.ariaOwns} aria-haspopup={route.ariaPopup} onMouseOver={route.mouseOver} />
+        ))}
       </Tabs>
       <Button variant="contained" color="secondary" className={classes.button}>
         Masuk
             </Button>
       <Menu id="simple-menu" anchorEl={anchorEl} open={openMenu} onClose={handleClose} MenuListProps={{ onMouseLeave: handleClose }} classes={{ paper: classes.menu }} elevation={0} >
-        <MenuItem onClick={handleClose} component={Link} to="/layanan" classes={{ root: classes.menuItem }} >Layanan</MenuItem>
-        <MenuItem onClick={handleClose} component={Link} to="/kuesioner" classes={{ root: classes.menuItem }} >Kuesioner</MenuItem>
-        <MenuItem onClick={handleClose} component={Link} to="/monitoring" classes={{ root: classes.menuItem }} >Monitoring</MenuItem>
+        {menuOptions.map((option, i) => (
+          <MenuItem onClick={handleClose} classes={{ root: classes.menuItem }} component={Link} to={option.link} >
+            {option.name}
+          </MenuItem>
+        ))}
       </Menu>
     </React.Fragment>
   )
 
   const drawer = (
     <React.Fragment>
-      <SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} open={openDrawer} onClose={() => setOpenDrawer(false)} onOpen={() => setOpenDrawer(true)} classes={{paper: classes.drawer}} >
+      <SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} open={openDrawer} onClose={() => setOpenDrawer(false)} onOpen={() => setOpenDrawer(true)} classes={{ paper: classes.drawer }} >
         <List disablePadding >
-          <ListItem divider button onClick={() => setOpenDrawer(false)} component={Link} to="/" >
-            <ListItemText disableTypography className={classes.drawerItem} >Beranda</ListItemText>
-          </ListItem>
-          <ListItem divider button onClick={() => setOpenDrawer(false)} component={Link} to="/layanan" >
-            <ListItemText disableTypography className={classes.drawerItem} >Layanan</ListItemText>
-          </ListItem>
-          <ListItem divider button onClick={() => setOpenDrawer(false)} component={Link} to="/kuesioner" >
-            <ListItemText disableTypography className={classes.drawerItem} >Kuesioner</ListItemText>
-          </ListItem>
-          <ListItem divider button onClick={() => setOpenDrawer(false)} component={Link} to="/monitoring" >
-            <ListItemText disableTypography className={classes.drawerItem} >Monitoring</ListItemText>
-          </ListItem>
-          <ListItem divider button onClick={() => setOpenDrawer(false)} component={Link} to="/tentang" >
-            <ListItemText disableTypography className={classes.drawerItem} >Tentang</ListItemText>
-          </ListItem>
-          <ListItem divider button onClick={() => setOpenDrawer(false)} component={Link} to="/kontak" >
-            <ListItemText disableTypography className={classes.drawerItem} >Kontak</ListItemText>
-          </ListItem>
+          {routes.map((route, i) => (
+            <ListItem divider button onClick={() => setOpenDrawer(false)} component={Link} to={route.link} >
+              <ListItemText disableTypography className={classes.drawerItem} >
+              {route.name}
+              </ListItemText>
+            </ListItem>
+          ))}
           <ListItem divider button onClick={() => setOpenDrawer(false)} component={Link} className={classes.masuk} to="/masuk" >
             <ListItemText disableTypography className={classes.drawerItem} >Masuk</ListItemText>
           </ListItem>
