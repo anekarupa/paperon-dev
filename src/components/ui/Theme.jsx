@@ -21,5 +21,13 @@ export default createMuiTheme({
     secondary: {
       main: `${paperon01}`
     }
+  },
+  typography: {
+    tab: {
+      fontFamily: 'Roboto',
+      textTransform: 'none',
+      fontWeight: 700,
+      fontSize: '1rem',
+    }
   }
 })
