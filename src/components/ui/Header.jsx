@@ -112,6 +112,10 @@ const useStyles = makeStyles(theme => ({
   },
   masuk: {
     backgroundColor: theme.palette.common.warna01,
+  },
+  appbar: {
+    zIndex: theme.zIndex.modal + 1,
+
   }
 }))
 
@@ -171,6 +175,7 @@ export default function Header(props) {
   const drawer = (
     <React.Fragment>
       <SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} open={openDrawer} onClose={() => setOpenDrawer(false)} onOpen={() => setOpenDrawer(true)} classes={{ paper: classes.drawer }} >
+        <div className={classes.toolbarMargin} />
         <List disablePadding >
           {routes.map((route, index) => (
             <ListItem key={`${route.name}`} divider button onClick={() => setOpenDrawer(false)} component={Link} to={route.link} >
@@ -193,7 +198,7 @@ export default function Header(props) {
   return (
     <React.Fragment>
       <ElevationScroll>
-        <AppBar>
+        <AppBar className={classes.appbar}>
           <Toolbar disableGutters>
             <Button component={Link} to="/" className={classes.logoContainer} disableRipple>
               <img
