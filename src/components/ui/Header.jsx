@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Button from '@material-ui/core/Button'
+import { Link } from 'react-router-dom'
 
 import logo from '../../assets/logo.svg'
 
@@ -27,7 +28,7 @@ const useStyles = makeStyles(theme => ({
     marginBottom: '3em'
   },
   logo: {
-    height: '7em'
+    height: '8em'
   },
   tabContainer: {
     marginLeft: 'auto'
@@ -35,7 +36,7 @@ const useStyles = makeStyles(theme => ({
   tab: {
     ...theme.typography.tab,
     minWidth: 10,
-    marginLeft: '25px'
+    marginLeft: '25px',
   },
   button: {
     ...theme.typography.masuk,
@@ -43,6 +44,12 @@ const useStyles = makeStyles(theme => ({
     marginLeft: '50px',
     marginRight: '25px',
     height: '45px',
+  },
+  logoContainer: {
+    padding: 0,
+    "&:hover" : {
+      backgroundColor: 'transparent'
+    }
   }
 }))
 
@@ -54,16 +61,18 @@ export default function Header(props) {
       <ElevationScroll>
         <AppBar>
           <Toolbar disableGutters>
-            <img
-              src={logo}
-              alt="my logo"
-              className={classes.logo}
-            />
-            <Tabs className={classes.tabContainer}>
-              <Tab className={classes.tab} label="Beranda" />
-              <Tab className={classes.tab} label="Layanan" />
-              <Tab className={classes.tab} label="Tentang" />
-              <Tab className={classes.tab} label="Kontak" />
+            <Button component={Link} to="/" className={classes.logoContainer} disableRipple>
+              <img
+                src={logo}
+                alt="my logo"
+                className={classes.logo}
+              />
+            </Button>
+            <Tabs className={classes.tabContainer} indicatorColor="primary">
+              <Tab className={classes.tab} component={Link} to="/" label="Beranda" />
+              <Tab className={classes.tab} component={Link} to="/layanan" label="Layanan" />
+              <Tab className={classes.tab} component={Link} to="/tentang" label="Tentang" />
+              <Tab className={classes.tab} component={Link} to="/kontak" label="Kontak" />
             </Tabs>
             <Button variant="contained" color="secondary" className={classes.button}>
               Masuk
