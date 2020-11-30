@@ -162,7 +162,7 @@ export default function Header(props) {
       <Button variant="contained" color="secondary" className={classes.button}>
         Masuk
             </Button>
-      <Menu id="simple-menu" anchorEl={anchorEl} open={openMenu} onClose={handleClose} MenuListProps={{ onMouseLeave: handleClose }} classes={{ paper: classes.menu }} elevation={0} keepMounted >
+      <Menu id="simple-menu" anchorEl={anchorEl} open={openMenu} onClose={handleClose} MenuListProps={{ onMouseLeave: handleClose }} classes={{ paper: classes.menu }} elevation={0} keepMounted style={{zIndex: 1302}} >
         {menuOptions.map((option, i) => (
           <MenuItem key={`${option.link}`} onClick={handleClose} classes={{ root: classes.menuItem }} component={Link} to={option.link} >
             {option.name}
