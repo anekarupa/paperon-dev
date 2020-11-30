@@ -104,7 +104,11 @@ const useStyles = makeStyles(theme => ({
   },
   drawerItem: {
     ...theme.typography.tab,
-    color: 'white'
+    color: 'white',
+    opacity: 0.7,
+    "&:hover": {
+      opacity: 1
+    }
   },
   masuk: {
     backgroundColor: theme.palette.common.warna01,
