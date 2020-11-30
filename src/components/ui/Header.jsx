@@ -39,6 +39,10 @@ const useStyles = makeStyles(theme => ({
     ...theme.typography.tab,
     minWidth: 10,
     marginLeft: '25px',
+    opacity: 0.7,
+    "&:hover": {
+      opacity: 1
+    }
   },
   button: {
     ...theme.typography.masuk,
@@ -51,6 +55,18 @@ const useStyles = makeStyles(theme => ({
     padding: 0,
     "&:hover": {
       backgroundColor: 'transparent'
+    }
+  },
+  menu: {
+    backgroundColor: theme.palette.common.warna02,
+    color: 'white',
+    borderRadius: '5px'
+  },
+  menuItem: {
+    ...theme.typography.tab,
+    opacity: 0.7,
+    "&:hover": {
+      opacity: 1
     }
   }
 }))
@@ -91,10 +107,10 @@ export default function Header(props) {
             <Button variant="contained" color="secondary" className={classes.button}>
               Masuk
             </Button>
-            <Menu id="simple-menu" anchorEl={anchorEl} open={open} onClose={handleClose} MenuListProps={{onMouseLeave: handleClose}} >
-              <MenuItem onClick={handleClose}>Layanan</MenuItem>
-              <MenuItem onClick={handleClose}>Kuesioner</MenuItem>
-              <MenuItem onClick={handleClose}>Monitoring</MenuItem>
+            <Menu id="simple-menu" anchorEl={anchorEl} open={open} onClose={handleClose} MenuListProps={{onMouseLeave: handleClose}} classes={{paper: classes.menu}} elevation={0} >
+              <MenuItem onClick={handleClose} component={Link} to="/layanan" classes={{root: classes.menuItem}} >Layanan</MenuItem>
+              <MenuItem onClick={handleClose} component={Link} to="/kuesioner" classes={{root: classes.menuItem}} >Kuesioner</MenuItem>
+              <MenuItem onClick={handleClose} component={Link} to="/monitoring" classes={{root: classes.menuItem}} >Monitoring</MenuItem>
             </Menu>
           </Toolbar>
         </AppBar>
