@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import theme from './ui/Theme'
 import Header from './ui/Header'
+import Footer from './ui/Footer';
 
 export default function App() {
   return (
@@ -11,7 +12,7 @@ export default function App() {
       <BrowserRouter>
         <Header />
         <Switch>
-          <Route exact path="/" component={() => <div>Beranda</div> } />
+          <Route exact path="/" component={() => <div style={{height: '1000px'}}>Beranda</div> } />
           <Route exact path="/layanan" component={() => <div>Layanan</div> } />
           <Route exact path="/kuesioner" component={() => <div>Layanan - Kuesioner</div> } />
           <Route exact path="/monitoring" component={() => <div>Layanan - Monitoring</div> } />
@@ -19,6 +20,7 @@ export default function App() {
           <Route exact path="/kontak" component={() => <div>Kontak</div> } />
           <Route exact path="/masuk" component={() => <div>Masuk</div> } />
         </Switch>
+        <Footer />
       </BrowserRouter>
     </ThemeProvider>
   );
