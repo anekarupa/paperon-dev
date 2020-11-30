@@ -14,6 +14,9 @@ import { useTheme } from '@material-ui/core/styles'
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer'
 import MenuIcon from '@material-ui/icons/Menu'
 import IconButton from '@material-ui/core/IconButton';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
 
 import logo from '../../assets/logo.svg'
 
@@ -95,6 +98,16 @@ const useStyles = makeStyles(theme => ({
   drawerIcon: {
     height: '35px',
     width: '35px'
+  },
+  drawer: {
+    backgroundColor: theme.palette.common.warna02,
+  },
+  drawerItem: {
+    ...theme.typography.tab,
+    color: 'white'
+  },
+  masuk: {
+    backgroundColor: theme.palette.common.warna01,
   }
 }))
 
@@ -139,8 +152,30 @@ export default function Header(props) {
 
   const drawer = (
     <React.Fragment>
-      <SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} open={openDrawer} onClose={() => setOpenDrawer(false)} onOpen={() => setOpenDrawer(true)} >
-        Example Drawer
+      <SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} open={openDrawer} onClose={() => setOpenDrawer(false)} onOpen={() => setOpenDrawer(true)} classes={{paper: classes.drawer}} >
+        <List disablePadding >
+          <ListItem divider button onClick={() => setOpenDrawer(false)} component={Link} to="/" >
+            <ListItemText disableTypography className={classes.drawerItem} >Beranda</ListItemText>
+          </ListItem>
+          <ListItem divider button onClick={() => setOpenDrawer(false)} component={Link} to="/layanan" >
+            <ListItemText disableTypography className={classes.drawerItem} >Layanan</ListItemText>
+          </ListItem>
+          <ListItem divider button onClick={() => setOpenDrawer(false)} component={Link} to="/kuesioner" >
+            <ListItemText disableTypography className={classes.drawerItem} >Kuesioner</ListItemText>
+          </ListItem>
+          <ListItem divider button onClick={() => setOpenDrawer(false)} component={Link} to="/monitoring" >
+            <ListItemText disableTypography className={classes.drawerItem} >Monitoring</ListItemText>
+          </ListItem>
+          <ListItem divider button onClick={() => setOpenDrawer(false)} component={Link} to="/tentang" >
+            <ListItemText disableTypography className={classes.drawerItem} >Tentang</ListItemText>
+          </ListItem>
+          <ListItem divider button onClick={() => setOpenDrawer(false)} component={Link} to="/kontak" >
+            <ListItemText disableTypography className={classes.drawerItem} >Kontak</ListItemText>
+          </ListItem>
+          <ListItem divider button onClick={() => setOpenDrawer(false)} component={Link} className={classes.masuk} to="/masuk" >
+            <ListItemText disableTypography className={classes.drawerItem} >Masuk</ListItemText>
+          </ListItem>
+        </List>
       </SwipeableDrawer>
       <IconButton onClick={() => setOpenDrawer(!openDrawer)} disableRipple className={classes.drawerIconContainer} >
         <MenuIcon className={classes.drawerIcon} />
